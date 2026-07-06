@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '../stores/authStore'
 import EditorPanel from '../components/editor/EditorPanel'
 import PreviewFrame from '../components/editor/PreviewFrame'
@@ -7,6 +8,7 @@ import { codePieceApi } from '../services/codePieceApi'
 import { Save, Eye } from 'lucide-react'
 
 export default function CreatePiece() {
+  const { t } = useTranslation()
   const { isAuthenticated } = useAuthStore()
   const navigate = useNavigate()
 
@@ -38,7 +40,7 @@ export default function CreatePiece() {
     setSaving(true)
     try {
       const piece = await codePieceApi.create({
-        title: title || 'Untitled',
+        title: title || t('editor.title'),
         description,
         html_code: htmlCode,
         css_code: cssCode,
@@ -63,7 +65,7 @@ export default function CreatePiece() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Untitled Piece"
+            placeholder={t('editor.title')}
             className="bg-transparent text-lg font-medium border-b border-gray-700 focus:border-indigo-500 outline-none pb-1 w-64"
           />
           <label className="flex items-center gap-2 text-sm text-gray-400">
@@ -82,7 +84,7 @@ export default function CreatePiece() {
             className="flex items-center gap-1 px-3 py-2 text-sm bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
           >
             <Eye className="w-4 h-4" />
-            {showPreview ? 'Editor' : 'Preview'}
+            {showPreview ? t('editor.editor') : t('editor.preview')}
           </button>
           <button
             onClick={handleSave}
@@ -90,7 +92,7 @@ export default function CreatePiece() {
             className="flex items-center gap-1 px-4 py-2 text-sm bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 rounded-lg transition-colors"
           >
             <Save className="w-4 h-4" />
-            {saving ? 'Saving...' : 'Save'}
+            {saving ? t('editor.saving') : t('editor.save')}
           </button>
         </div>
       </div>
@@ -108,7 +110,7 @@ export default function CreatePiece() {
           value={tagInput}
           onChange={(e) => setTagInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && addTag()}
-          placeholder="Add tag..."
+          placeholder={t('editor.addTag')}
           className="bg-gray-800 text-sm px-2 py-1 rounded border border-gray-700 focus:outline-none focus:border-indigo-500 w-24"
         />
       </div>

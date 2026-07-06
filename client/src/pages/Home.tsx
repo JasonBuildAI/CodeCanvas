@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { codePieceApi } from '../services/codePieceApi'
 import GalleryGrid from '../components/gallery/GalleryGrid'
 import type { CodePiece } from '../types'
 import { Sparkles, ArrowRight, Code2, PenSquare, Users, Zap } from 'lucide-react'
 
 export default function Home() {
+  const { t } = useTranslation()
   const [pieces, setPieces] = useState<CodePiece[]>([])
   const [trending, setTrending] = useState<CodePiece[]>([])
   const [page, setPage] = useState(1)
@@ -38,19 +40,18 @@ export default function Home() {
         <div className="relative px-8 py-16 md:py-24 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm">
             <Zap className="w-4 h-4" />
-            Creative Code Gallery
+            {t('app.tagline')}
           </div>
 
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
-            Create, Share &{' '}
-            <span className="gradient-text">Inspire</span>
+            {t('app.tagline').split('&')[0]}&{' '}
+            <span className="gradient-text">{t('app.tagline').includes('Inspire') ? 'Inspire' : '启发'}</span>
             <br />
-            with Code
+            {t('app.tagline').split('Inspire')[1]?.trim() || 'with Code'}
           </h1>
 
           <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-            CodeCanvas is a creative playground for developers. Write HTML, CSS, and JavaScript,
-            see instant previews, and share your creations with the community.
+            {t('app.description')}
           </p>
 
           <div className="flex items-center justify-center gap-4">
@@ -59,7 +60,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 rounded-xl font-semibold text-white transition-all shadow-lg shadow-indigo-600/25"
             >
               <PenSquare className="w-5 h-5" />
-              Start Creating
+              {t('home.startCreating')}
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
@@ -67,7 +68,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-6 py-3 glass glass-hover rounded-xl font-medium text-gray-300"
             >
               <Code2 className="w-5 h-5" />
-              Explore Gallery
+              {t('home.explore')}
             </Link>
           </div>
 
@@ -75,15 +76,15 @@ export default function Home() {
           <div className="flex items-center justify-center gap-8 mt-10 pt-8 border-t border-white/5">
             <div className="text-center">
               <div className="text-2xl font-bold gradient-text">{pieces.length + trending.length}</div>
-              <div className="text-xs text-gray-500 mt-1">Creations</div>
+              <div className="text-xs text-gray-500 mt-1">{t('app.stats.creations')}</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-indigo-400">Live</div>
-              <div className="text-xs text-gray-500 mt-1">Preview</div>
+              <div className="text-xs text-gray-500 mt-1">{t('app.stats.preview')}</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-pink-400">∞</div>
-              <div className="text-xs text-gray-500 mt-1">Possibilities</div>
+              <div className="text-xs text-gray-500 mt-1">{t('app.stats.possibilities')}</div>
             </div>
           </div>
         </div>
@@ -97,10 +98,10 @@ export default function Home() {
               <div className="p-2 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-lg">
                 <Sparkles className="w-5 h-5 text-yellow-400" />
               </div>
-              <h2 className="text-xl font-bold">Trending Now</h2>
+              <h2 className="text-xl font-bold">{t('home.trending')}</h2>
             </div>
             <Link to="/search" className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1">
-              View all <ArrowRight className="w-3 h-3" />
+              {t('home.viewAll')} <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
 
@@ -157,7 +158,7 @@ export default function Home() {
             <div className="p-2 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-lg">
               <Code2 className="w-5 h-5 text-indigo-400" />
             </div>
-            <h2 className="text-xl font-bold">Recent Creations</h2>
+            <h2 className="text-xl font-bold">{t('home.gallery')}</h2>
           </div>
 
           {totalPages > 1 && (
@@ -167,7 +168,7 @@ export default function Home() {
                 disabled={page === 1}
                 className="px-3 py-1.5 text-sm bg-gray-800 rounded-lg disabled:opacity-30 hover:bg-gray-700 transition-colors"
               >
-                ← Prev
+                {t('home.prev')}
               </button>
               <span className="text-sm text-gray-500 px-2">{page} / {totalPages}</span>
               <button
@@ -175,7 +176,7 @@ export default function Home() {
                 disabled={page === totalPages}
                 className="px-3 py-1.5 text-sm bg-gray-800 rounded-lg disabled:opacity-30 hover:bg-gray-700 transition-colors"
               >
-                Next →
+                {t('home.next')}
               </button>
             </div>
           )}

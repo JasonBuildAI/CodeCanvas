@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '../stores/authStore'
 import EditorPanel from '../components/editor/EditorPanel'
 import PreviewFrame from '../components/editor/PreviewFrame'
@@ -8,6 +9,7 @@ import type { CodePiece } from '../types'
 import { Save, ArrowLeft } from 'lucide-react'
 
 export default function EditPiece() {
+  const { t } = useTranslation()
   const { id } = useParams()
   const navigate = useNavigate()
   const { isAuthenticated } = useAuthStore()
@@ -48,7 +50,7 @@ export default function EditPiece() {
     setSaving(true)
     try {
       await codePieceApi.update(piece.id, {
-        title: title || 'Untitled',
+        title: title || t('editor.title'),
         description,
         html_code: htmlCode,
         css_code: cssCode,
@@ -63,7 +65,7 @@ export default function EditPiece() {
     }
   }
 
-  if (loading) return <div className="text-center py-20 text-gray-400">Loading...</div>
+  if (loading) return <div className="text-center py-20 text-gray-400">{t('common.loading')}</div>
 
   return (
     <div className="flex flex-col h-[calc(100vh-5rem)]">
@@ -80,7 +82,7 @@ export default function EditPiece() {
           />
           <label className="flex items-center gap-2 text-sm text-gray-400">
             <input type="checkbox" checked={isPublic} onChange={(e) => setIsPublic(e.target.checked)} />
-            Public
+            {t('editor.public')}
           </label>
         </div>
         <button
@@ -89,7 +91,7 @@ export default function EditPiece() {
           className="flex items-center gap-1 px-4 py-2 text-sm bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 rounded-lg transition-colors"
         >
           <Save className="w-4 h-4" />
-          {saving ? 'Saving...' : 'Save'}
+          {saving ? t('editor.saving') : t('editor.save')}
         </button>
       </div>
 
