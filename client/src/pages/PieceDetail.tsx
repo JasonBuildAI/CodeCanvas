@@ -6,8 +6,10 @@ import LikeButton from '../components/piece/LikeButton'
 import CommentSection from '../components/piece/CommentSection'
 import type { CodePiece } from '../types'
 import { Edit3, GitFork, Eye, Heart, MessageSquare, ExternalLink, ArrowLeft, Clock, User } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 export default function PieceDetail() {
+  const { t } = useTranslation()
   const { id } = useParams()
   const navigate = useNavigate()
   const { user, isAuthenticated } = useAuthStore()
@@ -43,18 +45,14 @@ export default function PieceDetail() {
 
   if (loading) return (
     <div className="max-w-5xl mx-auto">
-      <div className="animate-pulse space-y-4">
-        <div className="h-8 shimmer rounded w-1/3" />
-        <div className="h-4 shimmer rounded w-1/4" />
-        <div className="h-[500px] shimmer rounded-xl" />
-      </div>
+      <div className="text-center py-20 text-gray-400">{t('common.loading')}</div>
     </div>
   )
 
   if (!piece) return (
     <div className="text-center py-20">
-      <p className="text-gray-500">Piece not found</p>
-      <Link to="/" className="text-indigo-400 hover:text-indigo-300 mt-4 inline-block">Back to Home</Link>
+      <p className="text-gray-500">{t('piece.notFound')}</p>
+      <Link to="/" className="text-indigo-400 hover:text-indigo-300 mt-4 inline-block">{t('piece.backToHome')}</Link>
     </div>
   )
 
@@ -63,7 +61,7 @@ export default function PieceDetail() {
       {/* Back button */}
       <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm text-gray-500 hover:text-white mb-6 transition-colors">
         <ArrowLeft className="w-4 h-4" />
-        Back
+        {t('piece.back')}
       </button>
 
       {/* Header */}
@@ -73,7 +71,7 @@ export default function PieceDetail() {
           <div className="flex items-center gap-4 mt-3 text-sm text-gray-400 flex-wrap">
             <Link to={`/user/${piece.user_id}`} className="flex items-center gap-1.5 hover:text-white transition-colors">
               <User className="w-4 h-4" />
-              {piece.author?.username || 'Anonymous'}
+              {piece.author?.username || t('piece.anonymous')}
             </Link>
             <span className="flex items-center gap-1.5">
               <Eye className="w-4 h-4 text-blue-400/70" /> {piece.view_count}
@@ -108,11 +106,11 @@ export default function PieceDetail() {
         <div className="flex items-center gap-2 flex-shrink-0">
           {isAuthenticated && user?.id === piece.user_id && (
             <Link to={`/edit/${piece.id}`} className="flex items-center gap-1.5 px-4 py-2 text-sm bg-gray-800 hover:bg-gray-700 rounded-xl transition-all">
-              <Edit3 className="w-4 h-4" /> Edit
+              <Edit3 className="w-4 h-4" /> {t('piece.edit')}
             </Link>
           )}
           <button onClick={handleFork} className="flex items-center gap-1.5 px-4 py-2 text-sm bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 rounded-xl transition-all shadow-lg shadow-violet-600/20">
-            <GitFork className="w-4 h-4" /> Fork
+            <GitFork className="w-4 h-4" /> {t('piece.fork')}
           </button>
         </div>
       </div>
@@ -125,7 +123,7 @@ export default function PieceDetail() {
             <div className="w-3 h-3 rounded-full bg-yellow-500" />
             <div className="w-3 h-3 rounded-full bg-emerald-500" />
           </div>
-          <span className="text-xs text-gray-500 ml-3">Live Preview</span>
+          <span className="text-xs text-gray-500 ml-3">{t('piece.livePreview')}</span>
         </div>
         <div className="bg-white">
           <iframe
@@ -148,7 +146,7 @@ export default function PieceDetail() {
             <div className={`px-4 py-2 border-b ${color} ${headerColor} text-xs font-semibold uppercase tracking-wider`}>
               {label}
             </div>
-            <pre className="p-4 text-xs text-gray-300 overflow-auto max-h-72 font-mono leading-relaxed">{code || <span className="text-gray-600 italic">empty</span>}</pre>
+            <pre className="p-4 text-xs text-gray-300 overflow-auto max-h-72 font-mono leading-relaxed">{code || <span className="text-gray-600 italic">{t('piece.empty')}</span>}</pre>
           </div>
         ))}
       </div>

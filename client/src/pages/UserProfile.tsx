@@ -3,9 +3,11 @@ import { useParams } from 'react-router-dom'
 import { codePieceApi } from '../services/codePieceApi'
 import GalleryGrid from '../components/gallery/GalleryGrid'
 import type { CodePiece } from '../types'
+import { useTranslation } from 'react-i18next'
 import { User } from 'lucide-react'
 
 export default function UserProfile() {
+  const { t } = useTranslation()
   const { id } = useParams()
   const [pieces, setPieces] = useState<CodePiece[]>([])
   const [loading, setLoading] = useState(true)
@@ -28,8 +30,8 @@ export default function UserProfile() {
           <User className="w-8 h-8 text-indigo-400" />
         </div>
         <div>
-          <h1 className="text-xl font-bold">User #{id}</h1>
-          <p className="text-sm text-gray-400">{pieces.length} pieces</p>
+          <h1 className="text-xl font-bold">{pieces[0]?.author?.username || `User #${id}`}</h1>
+          <p className="text-sm text-gray-400">{pieces.length} {t('user.pieces')}</p>
         </div>
       </div>
       <GalleryGrid pieces={pieces} loading={loading} />

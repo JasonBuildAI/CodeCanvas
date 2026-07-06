@@ -3,9 +3,11 @@ import { useSearchParams } from 'react-router-dom'
 import { codePieceApi } from '../services/codePieceApi'
 import GalleryGrid from '../components/gallery/GalleryGrid'
 import type { CodePiece } from '../types'
+import { useTranslation } from 'react-i18next'
 import { Search } from 'lucide-react'
 
 export default function SearchResults() {
+  const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const query = searchParams.get('q') || ''
   const [searchInput, setSearchInput] = useState(query)
@@ -35,7 +37,7 @@ export default function SearchResults() {
             type="text"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Search code pieces..."
+            placeholder={t('search.placeholder')}
             className="w-full bg-gray-900 border border-gray-700 rounded-xl pl-12 pr-4 py-3 focus:outline-none focus:border-indigo-500 transition-colors"
           />
         </div>
@@ -43,7 +45,7 @@ export default function SearchResults() {
 
       {query && (
         <p className="text-sm text-gray-400 mb-4">
-          Results for: <span className="text-white font-medium">{query}</span>
+          {t('search.resultsFor')} <span className="text-white font-medium">{query}</span>
         </p>
       )}
 
