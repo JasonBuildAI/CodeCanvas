@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "CodeCanvas",
+    "tagline": "Create, Share & Inspire with Code",
+    "description": "CodeCanvas is a creative playground for developers. Write HTML, CSS, and JavaScript, see instant previews, and share your creations with the community.",
+    "stats": {
+      "creations": "Creations",
+      "preview": "Live Preview",
+      "possibilities": "Possibilities"
+    }
+  },
+  "nav": {
+    "create": "Create",
+    "signin": "Sign In",
+    "register": "Register",
+    "logout": "Logout",
+    "search": "Search pieces...",
+    "language": "Language"
+  },
+  "home": {
+    "trending": "Trending Now",
+    "gallery": "Recent Creations",
+    "viewAll": "View all",
+    "startCreating": "Start Creating",
+    "explore": "Explore Gallery",
+    "prev": "← Prev",
+    "next": "Next →"
+  },
+  "auth": {
+    "signin": "Sign In",
+    "register": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "username": "Username",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signingIn": "Signing in...",
+    "creatingAccount": "Creating account...",
+    "error": {
+      "invalidCredentials": "Invalid email or password",
+      "registrationFailed": "Registration failed. Email or username may already exist.",
+      "usernameLength": "Username must be at least 3 characters",
+      "passwordLength": "Password must be at least 6 characters"
+    }
+  },
+  "editor": {
+    "title": "Untitled Piece",
+    "public": "Public",
+    "preview": "Preview",
+    "editor": "Editor",
+    "save": "Save",
+    "saving": "Saving...",
+    "addTag": "Add tag...",
+    "html": "HTML",
+    "css": "CSS",
+    "js": "JavaScript"
+  },
+  "piece": {
+    "edit": "Edit",
+    "fork": "Fork",
+    "back": "Back",
+    "livePreview": "Live Preview",
+    "empty": "empty",
+    "notFound": "Piece not found",
+    "backToHome": "Back to Home",
+    "anonymous": "Anonymous",
+    "loading": "Loading..."
+  },
+  "user": {
+    "pieces": "pieces",
+    "noPieces": "No pieces yet",
+    "beFirst": "Be the first to create something amazing!",
+    "createFirst": "Create Your First Piece"
+  },
+  "search": {
+    "placeholder": "Search code pieces...",
+    "resultsFor": "Results for:",
+    "noResults": "No results found"
+  },
+  "comments": {
+    "title": "Comments",
+    "placeholder": "Write a comment...",
+    "loginToComment": "Login to comment...",
+    "send": "Send",
+    "loading": "Loading comments...",
+    "empty": "No comments yet. Be the first!",
+    "anonymous": "Anonymous"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Page not found",
+    "backToHome": "Back to Home"
+  },
+  "common": {
+    "loading": "Loading..."
+  }
+}

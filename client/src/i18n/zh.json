@@ -1,0 +1,97 @@
+{
+  "app": {
+    "name": "CodeCanvas",
+    "tagline": "用代码创作、分享与启发",
+    "description": "CodeCanvas 是一个面向开发者的创意游乐场。编写 HTML、CSS 和 JavaScript，即时预览效果，并与社区分享你的作品。",
+    "stats": {
+      "creations": "作品数",
+      "preview": "实时预览",
+      "possibilities": "无限可能"
+    }
+  },
+  "nav": {
+    "create": "创作",
+    "signin": "登录",
+    "register": "注册",
+    "logout": "退出",
+    "search": "搜索作品...",
+    "language": "语言"
+  },
+  "home": {
+    "trending": "热门推荐",
+    "gallery": "最新作品",
+    "viewAll": "查看全部",
+    "startCreating": "开始创作",
+    "explore": "浏览画廊",
+    "prev": "← 上一页",
+    "next": "下一页 →"
+  },
+  "auth": {
+    "signin": "登录",
+    "register": "创建账号",
+    "email": "邮箱",
+    "password": "密码",
+    "username": "用户名",
+    "noAccount": "还没有账号？",
+    "hasAccount": "已有账号？",
+    "signingIn": "登录中...",
+    "creatingAccount": "注册中...",
+    "error": {
+      "invalidCredentials": "邮箱或密码错误",
+      "registrationFailed": "注册失败，邮箱或用户名可能已被占用",
+      "usernameLength": "用户名至少需要3个字符",
+      "passwordLength": "密码至少需要6个字符"
+    }
+  },
+  "editor": {
+    "title": "未命名作品",
+    "public": "公开",
+    "preview": "预览",
+    "editor": "编辑",
+    "save": "保存",
+    "saving": "保存中...",
+    "addTag": "添加标签...",
+    "html": "HTML",
+    "css": "CSS",
+    "js": "JavaScript"
+  },
+  "piece": {
+    "edit": "编辑",
+    "fork": "复刻",
+    "back": "返回",
+    "livePreview": "实时预览",
+    "empty": "空",
+    "notFound": "作品不存在",
+    "backToHome": "返回首页",
+    "anonymous": "匿名用户",
+    "loading": "加载中..."
+  },
+  "user": {
+    "pieces": "个作品",
+    "noPieces": "还没有作品",
+    "beFirst": "快来创建你的第一个精彩作品吧！",
+    "createFirst": "创建第一个作品"
+  },
+  "search": {
+    "placeholder": "搜索代码作品...",
+    "resultsFor": "搜索结果：",
+    "noResults": "没有找到结果"
+  },
+  "comments": {
+    "title": "评论",
+    "placeholder": "写评论...",
+    "loginToComment": "登录后才能评论...",
+    "send": "发送",
+    "loading": "加载评论中...",
+    "empty": "暂无评论，来当第一个吧！",
+    "anonymous": "匿名用户"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "页面不存在",
+    "backToHome": "返回首页"
+  },
+  "common": {
+    "loading": "加载中..."
+  }
+}
