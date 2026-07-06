@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import type { CodePiece } from '../../types'
 import { Heart, Eye, GitFork, User } from 'lucide-react'
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export default function GalleryGrid({ pieces, loading }: Props) {
+  const { t } = useTranslation()
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -34,14 +36,14 @@ export default function GalleryGrid({ pieces, loading }: Props) {
         <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 flex items-center justify-center border border-indigo-500/10">
           <Code2Icon className="w-10 h-10 text-indigo-400/50" />
         </div>
-        <p className="text-xl font-semibold text-gray-300 mb-2">No pieces yet</p>
-        <p className="text-gray-500 mb-8">Be the first to create something amazing!</p>
+        <p className="text-xl font-semibold text-gray-300 mb-2">{t('user.noPieces')}</p>
+        <p className="text-gray-500 mb-8">{t('user.beFirst')}</p>
         <Link
           to="/create"
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl font-medium text-white shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 transition-all"
         >
           <PenSquareIcon className="w-4 h-4" />
-          Create Your First Piece
+          {t('user.createFirst')}
         </Link>
       </div>
     )
@@ -86,11 +88,11 @@ export default function GalleryGrid({ pieces, loading }: Props) {
           {/* Info */}
           <div className="p-4">
             <h3 className="font-semibold truncate group-hover:text-indigo-400 transition-colors">
-              {piece.title || 'Untitled'}
+              {piece.title || t('editor.title')}
             </h3>
             <p className="text-xs text-gray-500 mt-1 flex items-center gap-1.5">
               <User className="w-3 h-3" />
-              {piece.author?.username || 'Anonymous'}
+              {piece.author?.username || t('piece.anonymous')}
             </p>
 
             {/* Stats row */}
