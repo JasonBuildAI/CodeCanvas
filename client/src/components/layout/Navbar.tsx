@@ -1,8 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuthStore } from '../../stores/authStore'
-import { Code2, LogIn, UserPlus, PlusSquare, LogOut, Search } from 'lucide-react'
+import { Code2, LogIn, UserPlus, PlusSquare, LogOut, Search, Languages } from 'lucide-react'
 
 export default function Navbar() {
+  const { t, i18n } = useTranslation()
   const { isAuthenticated, user, logout } = useAuthStore()
   const navigate = useNavigate()
 
@@ -29,7 +31,17 @@ export default function Navbar() {
               className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm text-gray-400 bg-gray-900/50 border border-gray-800 rounded-xl hover:border-gray-700 transition-all w-48"
             >
               <Search className="w-4 h-4" />
-              <span>Search pieces...</span>
+              <span>{t('nav.search')}</span>
+            </button>
+
+            {/* Language Switcher */}
+            <button
+              onClick={() => i18n.changeLanguage(i18n.language === 'zh' ? 'en' : 'zh')}
+              className="flex items-center gap-1.5 px-3 py-2 text-sm text-gray-400 hover:text-white rounded-xl hover:bg-gray-800/50 transition-all"
+              title={t('nav.language')}
+            >
+              <Languages className="w-4 h-4" />
+              <span className="text-xs font-medium">{i18n.language === 'zh' ? 'EN' : '中文'}</span>
             </button>
 
             {isAuthenticated ? (
@@ -39,7 +51,7 @@ export default function Navbar() {
                   className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 rounded-xl transition-all shadow-lg shadow-indigo-600/20"
                 >
                   <PlusSquare className="w-4 h-4" />
-                  <span className="hidden sm:inline">Create</span>
+                  <span className="hidden sm:inline">{t('nav.create')}</span>
                 </Link>
 
                 <Link
@@ -67,14 +79,14 @@ export default function Navbar() {
                   className="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:text-white rounded-xl hover:bg-gray-800/50 transition-all"
                 >
                   <LogIn className="w-4 h-4" />
-                  <span className="hidden sm:inline">Sign In</span>
+                  <span className="hidden sm:inline">{t('nav.signin')}</span>
                 </Link>
                 <Link
                   to="/register"
                   className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 rounded-xl transition-all shadow-lg shadow-indigo-600/20"
                 >
                   <UserPlus className="w-4 h-4" />
-                  <span>Register</span>
+                  <span>{t('nav.register')}</span>
                 </Link>
               </>
             )}
